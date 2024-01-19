@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Planning System</title>
+    <link rel="stylesheet" href="css/styles/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles/SignUp.css">
+
+</head>
+<body>
+<main class="container mt-5">
+    <section class="row" id="signup-form">
+        <div class="col-lg-4 bg-white m-auto rounded-top rounded-bottom" id="form-top">
+            <h2 class="text-center pt-3">Signup Now</h2>
+            <p class="text-center text-muted lead">It's Free and Takes a Minute</p>
+
+            <form id="signUpForm">
+                <div class="col-12 input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <input class="form-control" id="fullName" name="fullName" placeholder="FullName" type="text">
+                </div>
+                <div class="col-12 input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                    <input class="form-control" id="userEmail" name="userEmail" placeholder="Email"
+                           type="text">
+                </div>
+                <div class="col-12 input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+                    <input class="form-control" id="userAddress" name="userAddress" placeholder="Address" type="text">
+                </div>
+                <div class="col-12 input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input class="form-control" id="userNICorLicenceNo" name="userNICorLicenceNo"
+                           placeholder="Nic Number or License Number"
+                           type="text">
+                </div>
+                <div class="col-12 input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input class="form-control" id="userName" name="userName" placeholder="UserName" type="text">
+                </div>
+
+                <div class="col-12 input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    <input class="form-control" id="userPwd" name="userPwd" placeholder="Password" type="password">
+                </div>
+                <div class="col-12 mb-3">
+                    <button class="btn col-12 btn-primary" id="signUpBtn" style=" color:white;"
+                            type="button">Sign Up
+                    </button>
+                    <p class="text-center text-muted mt-2">When You Register by Clicking Signup Button, You Agree to our
+                        <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
+
+                    <p class="text-center">
+                        Already Have an Account ? <a href="index.html">Login Here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+</main>
+<script src="js/scripts/signup.js"></script>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    let baseURL = "http://localhost:8080/";
+    $("#signUpBtn").click(function (){
+        let name = $("#fullName").val();
+        let email = $("#userEmail").val();
+        let address = $("#userAddress").val();
+        let userName = $("#userName").val();
+        let password = $("#userPwd").val();
+        let nicOrPassportNum = $("#userNICorLicenceNo").val();
+        let user = {
+            name: name,
+            email: email,
+            address: address,
+            userName: userName,
+            password: password,
+            role: "User",
+            nicOrPassportNum: nicOrPassportNum
+        }
+        console.log(user);
+        $.ajax({
+            type: "POST", // You might need to adjust this depending on your server's API.
+            url: baseURL + "user/add_user",
+            data: JSON.stringify(user),
+            contentType: "application/json",
+            success: function (response) {
+                alert(" User SignUp successfully:");
+                document.getElementById('signUpForm').reset();
+            },
+            error: function (error) {
+                console.error("Error SignUp User:", error);
+            }
+
+        });
+    })
+</script>
+</body>
+</html>

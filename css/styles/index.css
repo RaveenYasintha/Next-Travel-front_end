@@ -1,0 +1,206 @@
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background:#14068d;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    transition: all 1s;
+}
+
+nav {
+    background-color:#0b182f;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.logo img {
+    max-width: 100px; /* Adjust the max-width as needed */
+    height: auto;
+}
+
+nav .logo img {
+    max-width: 100px;
+    padding: 0 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color:#f6efef;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+header {
+    color:#a68282;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    background-image: url("../../assets/Travel places Img/background img.jpg");
+    align-items: center;
+    justify-content: space-around;
+    background-size: 100%;
+}
+
+#homeDesc {
+    width: 50%;
+}
+
+#packages{
+    background-color: #a497cb;
+}
+
+#travel-locations{
+    background-color: #6ea8fe;
+}
+
+h1 {
+    font-size: 7em;
+}
+
+.travel-locations, .packages, .contact {
+    padding: 20px;
+}
+
+.location-card, .package {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+}
+
+.book-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.book-button:hover {
+    background-color: #2980b9;
+}
+
+#contact-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea,
+#contact-form button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+#contact-form button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#contact-form button:hover {
+    background-color: #2980b9;
+}
+
+
+.login-section {
+    margin: 10px;
+    padding: 20px;
+    width: 21vw;
+    float: right;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.login-section h2 {
+    font-size: 1.5em;
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"],
+#login-form button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+#login-form button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#login-form button:hover {
+    background-color: #2980b9;
+}
+
+.user-section {
+    display: none;
+}
+
+.menuItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer {
+    height: 10vh;
+    background: #333;
+}
+
+.sectionTitle {
+    padding-top: 25px;
+    padding-bottom: 15px;
+}

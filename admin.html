@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles/admin.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles/SignUp.css">
+</head>
+<body>
+<div class="top-navbar">
+    <div class="logo">
+        <img src="assets/Travel%20places%20Img/logo 2 png.png" alt="Logo">
+    </div>
+    <div class="logout-button">
+        <button id="logoutButton">Logout</button>
+    </div>
+</div>
+<div class="sidebar">
+    <button id="driverBtn" class="nav-button" onclick="showSectionOnClick('driver')">Driver</button>
+    <button id="travel-packageBtn" class="nav-button" onclick="showSectionOnClick('travel-package')">Travel Package
+    </button>
+    <button id="hotelBtn" class="nav-button" onclick="showSectionOnClick('hotel')">Hotel</button>
+    <button id="vehicleBtn" class="nav-button" onclick="showSectionOnClick('vehicle')">Vehicle</button>
+    <button id="userBtn" class="nav-button" onclick="showSectionOnClick('user')">User</button>
+
+    <button id="guideBtn" class="nav-button" onclick="showSectionOnClick('guide')">Guide</button>
+</div>
+
+<div class="main-content">
+
+    <div id="driver" class="section hide">
+        <div class="mb-5 mt-5">
+            <div class="container-fluid">
+                <div class="mt-md-4 mb-md-4">
+                    <h1>Drivers</h1>
+                    <div class="row ">
+                        <div class="col-4">
+                            <form id="driverForm">
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="driver_name">Name</label>
+                                        <input class="form-control" id="driver_name" name="name"
+                                               placeholder="Pasan Kumara"
+                                               type="text">
+                                    </div>
+                                    <div class="col">
+                                        <label for="driver_lic">Nic Number</label>
+                                        <input class="form-control" name="nic" id="driver_lic" placeholder="B12345678"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="driver_contact">Contact Number</label>
+                                        <input class="form-control" name="contactNum" id="driver_contact"
+                                               placeholder="0712345678"
+                                               type="text">
+                                    </div>
+                                    <div class="col">
+                                        <label for="driver_address">Address</label>
+                                        <input class="form-control" id="driver_address" name="address"
+                                               placeholder="Colombo 07"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <label for="driver_email">Email</label>
+                                    <input class="form-control" id="driver_email" name="email"
+                                           placeholder="contac@gamil.com"
+                                           type="text">
+                                </div>
+                                <div class="mt-4">
+                                    <label for="dr_frontPhoto">Licence Front Photo</label>
+                                    <input class="form-control" id="dr_frontPhoto"
+                                           type="file">
+                                </div>
+                                <div class="form-group row mt-4 mb-5">
+                                    <div class="col-8 btn-group">
+                                        <button class="btn btn-success" id="btnAddDriver" type="button">Add</button>
+                                        <button class="btn btn-warning" id="btnUpdateDriver" type="button">Update
+                                        </button>
+                                        <button class="btn btn-danger" id="btnDeleteDriver" type="button">Delete
+                                        </button>
+                                        <button class="btn btn-primary" id="btnClearDriver" type="button">Clear
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <!--  Driver table-->
+                        <div class="col-8 table-responsive" style="height: 61vh; overflow-y: scroll;">
+                            <table class="table shadow table-hover" id="tblDriver">
+                                <thead class="thead-dark">
+                                <tr class="table-primary">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Nic</th>
+                                    <th scope="col">Contact</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Availability</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="driverTable">
+                                </tbody>
+                            </table>
+                        </div>
+                        <span>
+                        <img id="driverLicenceImg" src="" style="width: 23vw; height: 23vh;">
+                        </span>
+                    </div>
+                </div>
+                <!--                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"-->
+                <!--                     aria-hidden="true">-->
+                <!--                    <div class="modal-dialog modal-xl  p-1 rounded">-->
+                <!--                        <div class="modal-content">-->
+                <!--                            <div class="modal-header rounded">-->
+                <!--                                <h5 class="modal-title px-4">Driver Details</h5>-->
+                <!--                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                <!--                            </div>-->
+                <!--                            <div class="modal-body was-validation">-->
+                <!--                                <form>-->
+
+                <!--                                    <div class="row">-->
+                <!--                                        <div class="col-4">-->
+                <!--                                            <div class="form-floating mb-3">-->
+                <!--                                                <input type="text" class="form-control" id="popUpDriverName" style="width: 300px;">-->
+                <!--                                                <label for="popUpDriverName">Driver Name</label>-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                        <div class="col-4">-->
+                <!--                                            <div class="form-floating mb-3">-->
+                <!--                                                <input type="text" class="form-control" id="popUpDriverNic" style="width: 300px;">-->
+                <!--                                                <label for="popUpDriverNic">Nic</label>-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                        <div class="col-4">-->
+                <!--                                            <div class="form-floating mb-3">-->
+                <!--                                                <input type="text" class="form-control" id="popUpDriverContact" style="width: 300px;">-->
+                <!--                                                <label for="popUpDriverContact">Contact</label>-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+
+                <!--                                    <div class="row">-->
+                <!--                                        <div class="col-4">-->
+                <!--                                            <div class="form-floating mb-3">-->
+                <!--                                                <input type="text" class="form-control" id="popUpDriverEmail" style="width: 300px;">-->
+                <!--                                                <label for="popUpDriverEmail">Email</label>-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                        <div class="col-4">-->
+                <!--                                            <div class="form-floating mb-3">-->
+                <!--                                                <input type="text" class="form-control" id="popUpDriverAddress" style="width: 300px;">-->
+                <!--                                                <label for="popUpDriverAddress">Address</label>-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                        <div class="col-4">-->
+
+                <!--                                        </div>-->
+
+
+                <!--                                        <div class="col-4">-->
+
+                <!--                                        </div>-->
+
+                <!--                                        <div class="col-4">-->
+
+                <!--                                        </div>-->
+
+                <!--                                        <div class="col-4">-->
+                <!--                                            &lt;!&ndash;                                <input class="form-control" type="file" id="formFile2" style="width: 300px;" >&ndash;&gt;-->
+                <!--                                        </div>-->
+
+                <!--                                        <div class="col-4 pt-3">-->
+
+                <!--                                        </div>-->
+
+                <!--                                    </div>-->
+
+                <!--                                    <div class="modal-footer">-->
+                <!--                                    </div>-->
+
+                <!--                                </form>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-l  p-1 rounded">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Driver Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h1 class="text-center" id="popUpDriverName">Travel Package Title</h1>
+                                <p class="text-center" id="popUpDriverEmail">A brief description of the package.</p>
+                                <div class="text-center">
+                                    <div class="card-body">
+                                        <!--                                        <h3>Package Details</h3>-->
+                                        <h6>Nic : <span id="popUpDriverNic"></span></h6>
+                                        <h6>Contact Number : <span id="popUpDriverContact"></span></h6>
+                                        <h6>Address : <span id="popUpDriverAddress"></span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="travel-package" class="section hide">
+        <div class="mb-5 mt-5">
+            <div class="container-fluid">
+                <div class="mt-md-4 mb-md-4">
+                    <h1>Travel Packages</h1>
+                    <div class="row ">
+                        <div class="col-4">
+                            <form id="travelForm">
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="tr_name">Package Name</label>
+                                        <input class="form-control" id="tr_name" name="name" placeholder="Pasan Kumara"
+                                               type="text">
+                                    </div>
+                                    <div class="col">
+                                        <label for="travel_category">Category</label>
+                                        <select class="form-control" id="travel_category" name="category">
+                                            <option>Regular</option>
+                                            <option>Mid-level</option>
+                                            <option>Luxury</option>
+                                            <option>Super Luxury</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="star_rate">Star Rate</label>
+                                        <input class="form-control" name="contactNum" id="star_rate" placeholder="Rate"
+                                               type="number">
+                                    </div>
+                                    <div class="col">
+                                        <label for="travel_count">Head Count</label>
+                                        <input class="form-control" id="travel_count" name="address"
+                                               placeholder="Head Count"
+                                               type="number">
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <label for="travel_description">Description</label>
+                                    <input class="form-control" id="travel_description" name="email"
+                                           placeholder="Type the Description"
+                                           type="text">
+                                </div>
+                                <div class="mt-4">
+                                    <label for="tr_frontPhoto">Attach Photo</label>
+                                    <input class="form-control" id="tr_frontPhoto"
+                                           type="file">
+                                </div>
+                                <div class="form-group row mt-4 mb-5">
+                                    <div class="col-8 btn-group">
+                                        <button class="btn btn-success" id="btnAddTravel" type="button">Add</button>
+                                        <button class="btn btn-warning" id="btnUpdateTravel" type="button">Update
+                                        </button>
+                                        <button class="btn btn-danger" id="btnDeleteTravel" type="button">Delete
+                                        </button>
+                                        <button class="btn btn-primary" id="btnClearTravel" type="button">Clear
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"-->
+                            <!--                                 aria-hidden="true">-->
+                            <!--                                <div class="modal-dialog modal-xl  p-1 rounded">-->
+                            <!--                                    <div class="modal-content">-->
+                            <!--                                        <div class="modal-header rounded">-->
+                            <!--                                            <h5 class="modal-title px-4">Packages Details</h5>-->
+                            <!--                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                            <!--                                        </div>-->
+                            <!--                                        <div class="modal-body was-validation">-->
+                            <!--                                            <form>-->
+
+                            <!--                                                <div class="row">-->
+                            <!--                                                    <div class="col-4">-->
+                            <!--                                                        <div class="form-floating mb-3">-->
+                            <!--                                                            <input type="text" class="form-control" id="popUpPackageName" style="width: 300px;">-->
+                            <!--                                                            <label for="popUpPackageName">Package Name</label>-->
+                            <!--                                                        </div>-->
+                            <!--                                                    </div>-->
+                            <!--                                                    <div class="col-4">-->
+                            <!--                                                        <div class="form-floating mb-3">-->
+                            <!--                                                            <input type="text" class="form-control" id="popUpTravelCategory" style="width: 300px;">-->
+                            <!--                                                            <label for="popUpTravelCategory">CateGory</label>-->
+                            <!--                                                        </div>-->
+                            <!--                                                    </div>-->
+                            <!--                                                    <div class="col-4">-->
+                            <!--                                                        <div class="form-floating mb-3">-->
+                            <!--                                                            <input type="text" class="form-control" id="popPacakageStarRate" style="width: 300px;">-->
+                            <!--                                                            <label for="popPacakageStarRate">Star Rate</label>-->
+                            <!--                                                        </div>-->
+                            <!--                                                    </div>-->
+                            <!--                                                </div>-->
+
+                            <!--                                                <div class="row">-->
+                            <!--                                                    <div class="col-4">-->
+                            <!--                                                        <div class="form-floating mb-3">-->
+                            <!--                                                            <input type="text" class="form-control" id="popTravelCount" style="width: 300px;">-->
+                            <!--                                                            <label for="popTravelCount">Travel Count</label>-->
+                            <!--                                                        </div>-->
+                            <!--                                                    </div>-->
+                            <!--                                                    <div class="col-4">-->
+                            <!--                                                        <div class="form-floating mb-3">-->
+                            <!--                                                            <input type="text" class="form-control" id="popTravelDuration" style="width: 300px;">-->
+                            <!--                                                            <label for="popTravelDuration">Duration(Days)</label>-->
+                            <!--                                                        </div>-->
+                            <!--                                                    </div>-->
+                            <!--                                                    <div class="col-4">-->
+
+                            <!--                                                    </div>-->
+
+
+                            <!--                                                    <div class="col-4">-->
+
+                            <!--                                                    </div>-->
+
+                            <!--                                                    <div class="col-4">-->
+
+                            <!--                                                    </div>-->
+
+                            <!--                                                    <div class="col-4">-->
+                            <!--                                                        &lt;!&ndash;                                <input class="form-control" type="file" id="formFile2" style="width: 300px;" >&ndash;&gt;-->
+                            <!--                                                    </div>-->
+
+                            <!--                                                    <div class="col-4 pt-3">-->
+
+                            <!--                                                    </div>-->
+
+                            <!--                                                </div>-->
+
+                            <!--                                                <div class="modal-footer">-->
+                            <!--                                                </div>-->
+
+                            <!--                                            </form>-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-l  p-1 rounded">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Travel Details</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h1 class="text-center" id="popUpPackageName">Travel Package Title</h1>
+                                            <!--                                            <p class="text-center" id="driverEmailOnModal">A brief description of the package.</p>-->
+                                            <!--                                            <label class="d-none" id="packageIdModal"></label>-->
+                                            <div class="text-center">
+                                                <div class="card-body">
+                                                    <!--                                        <h3>Package Details</h3>-->
+                                                    <h6>Category : <span id="popUpTravelCategory"></span></h6>
+                                                    <h6>StarRate : <span id="popPacakageStarRate"></span></h6>
+                                                    <h6>Head Count : <span id="popTravelCount"></span></h6>
+                                                    <h6>Description : <span id="popTravelDuration"></span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--  Driver table-->
+                        <div class="col-8 table-responsive" style="height: 61vh; overflow-y: scroll;">
+                            <table class="table shadow table-hover" id="tblPackage">
+                                <thead class="thead-dark">
+                                <tr class="table-primary">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Package Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Star Rate</th>
+                                    <th scope="col">Head Count</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id=travelTable>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hotel" class="section hide">
+        <div class="mb-5 mt-5">
+            <div class="container-fluid">
+                <div class="mt-md-4 mb-md-4">
+                    <h1>Hotel</h1>
+                    <div class="row">
+                        <div class="col-4">
+                            <form id="hotelForm">
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="hotelName">Hotel Name</label>
+                                        <input class="form-control" id="hotelName" name="name"
+                                               placeholder="Hotel Name"
+                                               type="text">
+                                    </div>
+                                    <div class="col">
+                                        <label for="location">Location</label>
+                                        <input class="form-control" name="location" id="location"
+                                               placeholder="Location" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group row mt-4">
+                                    <div class="col">
+                                        <label for=categorySelected>Category</label>
+                                        <select class="form-control" id="categorySelected" name="category">
+                                            <option>Regular</option>
+                                            <option>Mid_Level</option>
+                                            <option>Luxury</option>
+                                            <option>Super Luxury</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="googleMapCoordinates">GoogleMapCoordinates</label>
+                                        <input class="form-control" id="googleMapCoordinates"
+                                               name="googleMapCoordinates" placeholder="Colombo 07"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="hotel_fee">Hotel Fee One Day</label>
+                                        <input class="form-control" id="hotel_fee" name="name"
+                                               placeholder="00"
+                                               type="text">
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="hotelContact">Contact</label>
+                                        <input class="form-control" id="hotelContact" name="hotelContact"
+                                               placeholder="07XXXXXXXX"
+                                               type="text">
+                                    </div>
+                                </div>
+
+
+                                <div class="mt-4">
+                                    <label for="hotelEmail">Email</label>
+                                    <input class="form-control" id="hotelEmail" name="hotelEmail"
+                                           placeholder="example@email.com"
+                                           type="text">
+                                    <div class="col">
+                                        <label for="googleMapCoordinates">Star Rate</label>
+                                        <input class="form-control" id="starRate"
+                                               name="starRate" placeholder="starRate"
+                                               type="number">
+                                    </div>
+
+                                </div>
+                                <div class="form-group row mt-4 mb-5">
+                                    <div class="col-8 btn-group">
+                                        <button class="btn btn-success" id="btnAddHotel" type="button">Add</button>
+                                        <button class="btn btn-warning" id="btnUpdateHotel" type="button">Update
+                                        </button>
+                                        <button class="btn btn-danger" id="btnDeleteHotel" type="button">Delete</button>
+                                        <button class="btn btn-primary" id="btnClearHotel" type="button">Clear
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+
+                        <!--  Driver table-->
+                        <div class="col-8 table-responsive" style="height: 61vh; overflow-y: scroll;">
+                            <table class="table shadow table-hover" id="tblHotel">
+                                <thead class="thead-dark">
+                                <tr class="table-primary">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Hotel Name</th>
+                                    <th scope="col">Contact</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="hotelTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-l  p-1 rounded">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Hotel Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1 class="text-center" id="popHotelName">Travel Package Title</h1>
+                            <p class="text-center" id="popHotelEmail">A brief description of the package.</p>
+                            <div class="text-center">
+                                <div class="card-body">
+                                    <!--                                        <h3>Package Details</h3>-->
+                                    <h6>Loacation : <span id="popHotelLoaction"></span></h6>
+                                    <h6>Hotel Fee : <span id="popHotelFee"></span></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle" class="section hide">
+        <div class="mt-5 mb-5" id="carPage">
+            <div class="container-fluid">
+                <div class="mt-md-4 mb-md-4">
+                    <h1>Vehicle</h1>
+                    <div class="row ">
+                        <div class="col-4">
+                            <form id="carForm">
+                                <div class="form-group row mt-4">
+                                    <div class="col">
+                                        <label for="vName">Vehicle Name</label>
+                                        <input class="form-control" id="vName"  placeholder="Vehicle Name"
+                                               type="text">
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="registrationNo">Reg Number</label>
+                                        <input class="form-control" id="registrationNo" name="regNumber"
+                                               placeholder="ABC-1234"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="row mt-4 form-group">
+
+                                    <div class="col">
+                                        <label for="make">Brand</label>
+                                        <input class="form-control" id="make"
+                                               placeholder="Toyota, Suzuki, Honda"
+                                               type="text">
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="categoryVehi">Category</label>
+                                        <select class="form-control" id="categoryVehi">
+                                            <option>Super Luxury</option>
+                                            <option>Luxury</option>
+                                            <option>Mid-level</option>
+                                            <option>Regular</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-4 form-group">
+
+                                    <div class="col">
+                                        <label for="fuel">Fuel Type</label>
+                                        <select class="form-control" id="fuel">
+                                            <option>Petrol</option>
+                                            <option>Diesel</option>
+                                            <option>Hybrid</option>
+                                            <option>Electric</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="pricePerDay">Price per Day</label>
+                                        <input class="form-control" id="pricePerDay"
+                                               placeholder="Rs:"
+                                               type="text">
+                                    </div>
+
+                                </div>
+                                <div class="form-group row mt-4">
+                                    <div class="col">
+                                        <label for="transmission">Transmission Type</label>
+                                        <select class="form-control" id="transmission" >
+                                            <option>Auto</option>
+                                            <option>Manual</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="fuelUsage" style="margin-top: 25px">fuel Usage</label>
+                                        <input class="form-control" id="fuelUsage"
+                                               placeholder="0"
+                                               type="number">
+                                    </div>
+                                    <div class="col">
+                                        <label for="noOfPassengers">No Of Passengers</label>
+                                        <input class="form-control" id="noOfPassengers"
+                                               placeholder="4"
+                                               type="number">
+                                    </div>
+                                </div>
+                                <div class="form-group row mt-4">
+
+                                </div>
+                                <div class="form-group row mt-4 mb-5">
+                                    <div class="col-9 btn-group">
+                                        <button class="btn btn-success" id="btnSaveCar" type="button">Save</button>
+                                        <button class="btn btn-warning" id="btnUpdateCar" type="button">Update</button>
+                                        <button class="btn btn-danger" id="btnDeleteCar" type="button">Delete</button>
+                                        <button class="btn btn-primary" id="btnClearCar" type="button">Clear
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <!--  car table-->
+                        <div class="col-8 table-responsive" style="height: 60vh; overflow-y: scroll;">
+                            <table class="table shadow table-hover">
+                                <thead class="thead-dark">
+                                <tr class="table-primary">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">RegNo</th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">NoPas</th>
+                                    <th scope="col">Fuel</th>
+                                    <th scope="col">Transmission</th>
+                                    <th scope="col">fuelUsage</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblCar">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-l  p-1 rounded">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Vehicle Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1 class="text-center" id="popRegNumber">Travel Package Title</h1>
+                            <p class="text-center" id="popRegBrand">A brief description of the package.</p>
+                            <!--                            <label class="d-none" id="packageIdModal"></label>-->
+                            <div class="text-center">
+                                <div class="card-body">
+                                    <!--                                        <h3>Package Details</h3>-->
+                                    <h6>Category : <span id="popcategory"></span></h6>
+                                    <h6>Fuel Type : <span id="popRegFuelType"></span></h6>
+                                    <h6>Transmission Type : <span id="popRegTramissionType"></span></h6>
+                                    <h6>Fuel Usage : <span id="popRegFuelUsage"></span></h6>
+                                    <h6>Seat Capacity : <span id="popseatCapacity"></span></h6>
+                                    <h6>Price Per Day : <span id="popPrivePerDay"></span></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="user" class="section hide">
+        <div class="mb-5 mt-5" id="userPage">
+            <div class="container-fluid">
+                <div class="mt-md-4 mb-md-4">
+                    <h1>User</h1>
+                    <div class="row ">
+                        <div class="col-4">
+                            <form id="userForm">
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="Full_name">Full Name</label>
+                                        <input class="form-control" id="Full_name" name="name"
+                                               placeholder="Pasan Kumara"
+                                               type="text">
+                                        <p><small id="lblFullName" class="text-danger p1-1">
+
+                                        </small></p>
+
+                                    </div>
+                                    <div class="col">
+                                        <label for="selctedRole">Role</label>
+                                        <select class="form-control" id="selctedRole" name="category">
+                                            <option>User</option>
+                                            <option>Super Admin</option>
+                                            <option>Travel Admin</option>
+                                            <option>User Admin</option>
+                                            <option>Vehicle Admin</option>
+                                            <option>Guide Admin</option>
+                                            <option>Driver Admin</option>
+                                            <option>Hotel Admin</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="email">Email</label>
+                                        <input class="form-control" name="contactNum" id="email" placeholder="Email"
+                                               type="text">
+                                        <p><small id="lblEmail" class="text-danger p1-1">
+
+                                        </small></p>
+                                    </div>
+                                    <div class="col">
+                                        <label for="address">Address</label>
+                                        <input class="form-control" id="address" name="address" placeholder="Address"
+                                               type="text">
+                                        <p><small id="lblAddress" class="text-danger p1-1">
+
+                                        </small></p>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="userName">User Name</label>
+                                        <input class="form-control" name="contactNum" id="userName"
+                                               placeholder="User Name"
+                                               type="text">
+                                        <p><small id="lblUserName" class="text-danger p1-1">
+
+                                        </small></p>
+                                    </div>
+                                    <div class="col">
+                                        <label for="password">Password</label>
+                                        <input class="form-control" id="password" name="address" placeholder="Password"
+                                               type="text">
+                                        <p><small id="lblPassword" class="text-danger p1-1">
+
+                                        </small></p>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <label for="nic">Nic</label>
+                                    <input class="form-control" id="nic" name="email" placeholder="Nic"
+                                           type="text">
+                                    <p><small id="lblNic" class="text-danger p1-1">
+
+                                    </small></p>
+                                    <div class="col">
+                                        <label for="usr_frontPhoto">Attach Photo</label>
+                                        <input class="form-control" id="usr_frontPhoto"
+                                               type="file">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mt-4 mb-5">
+                                    <div class="col-8 btn-group">
+                                        <button class="btn btn-success" id="btnAddUser" type="button">Add</button>
+                                        <button class="btn btn-warning" id="btmUpdateUser" type="button">Update</button>
+                                        <button class="btn btn-danger" id="btnDeleteUser" type="button">Delete</button>
+                                        <button class="btn btn-primary" id="btnClearUser" type="button">Clear
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-l  p-1 rounded">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="reservationModalLabel">User Details</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h1 class="text-center" id="popUpUseruserName">Travel Package Title</h1>
+                                            <p class="text-center" id="popUpUserEmail">A brief description of the
+                                                package.</p>
+                                            <label class="d-none" id="packageIdModal"></label>
+                                            <div class="text-center">
+                                                <div class="card-body">
+                                                    <!--                                        <h3>Package Details</h3>-->
+                                                    <h6>Full Name : <span id="popUpuserName"></span></h6>
+                                                    <h6>Nic : <span id="popUpUserNic"></span></h6>
+                                                    <h6>Address : <span id="popUpUserAddress"></span></h6>
+                                                    <h6>Password : <span id="popUpuserRole"></span></h6>
+                                                    <h6>Role : <span id="popUpUserPassword"></span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--  Driver table-->
+                        <div class="col-8 table-responsive" style="height: 61vh; overflow-y: scroll;">
+                            <table class="table shadow table-hover" id="tblUser">
+                                <thead class="thead-dark">
+                                <tr class="table-primary">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">User Name</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Nic</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id=userTable>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="guide" class="section hide">
+        <div class="mb-5 mt-5" id="guidePage">
+            <div class="container-fluid">
+                <div class="mt-md-4 mb-md-4">
+                    <h1>Guide</h1>
+                    <div class="row ">
+                        <div class="col-4">
+                            <form id="guideForm">
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="Full_name">Full Name</label>
+                                        <input class="form-control" id="guide_name" name="name"
+                                               placeholder="Pasan Kumara"
+                                               type="text">
+                                    </div>
+                                    <div class="col">
+                                        <label for="selctedgender">Gender</label>
+                                        <select class="form-control" id="selctedgender" name="category">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="email">Age</label>
+                                        <input class="form-control" name="contactNum" id="age" placeholder="Age"
+                                               type="text">
+                                    </div>
+                                    <div class="col">
+                                        <label for="address">Address</label>
+                                        <input class="form-control" id="guide_address" name="address"
+                                               placeholder="Address"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <label for="userName">Contact Number</label>
+                                        <input class="form-control" name="contactNum" id="contactNumber"
+                                               placeholder="076 ##"
+                                               type="text">
+                                    </div>
+                                    <div class="col">
+                                        <label for="manDayValue">Day Value</label>
+                                        <input class="form-control" id="manDayValue" name="address" placeholder="Value"
+                                               type="number">
+                                    </div>
+                                </div>
+                                <div class="form-group row mt-4 mb-5">
+                                    <div class="col-8 btn-group">
+                                        <button class="btn btn-success" id="btnAddGuide" type="button">Add</button>
+                                        <button class="btn btn-warning" id="btmUpdateGuide" type="button">Update
+                                        </button>
+                                        <button class="btn btn-danger" id="btnDeleteGuide" type="button">Delete</button>
+                                        <button class="btn btn-primary" id="btnClearGuide" type="button">Clear
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="modal fade" id="exampleModal8" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel8"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-l  p-1 rounded">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="reservatioModalLabel">Guide Detalis</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h1 class="text-center" id="name">Travel Package Title</h1>
+                                            <p class="text-center" id="guideaddress">A brief description of the
+                                                package.</p>
+                                            <label class="d-none" id="packageI"></label>
+                                            <div class="text-center">
+                                                <div class="card-body">
+                                                    <!--                                        <h3>Package Details</h3>-->
+                                                    <h6>Full Name : <span id="pgender"></span></h6>
+                                                    <h6>Contact : <span id="contact"></span></h6>
+                                                    <h6>Day Value : <span id="dayValue"></span></h6>
+                                                    <h6>Age : <span id="guideAge"></span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--  Driver table-->
+                        <div class="col-8 table-responsive" style="height: 61vh; overflow-y: scroll;">
+                            <table class="table shadow table-hover" id="tblGuide">
+                                <thead class="thead-dark">
+                                <tr class="table-primary">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Contact Number</th>
+                                    <th scope="col">Day Value</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Avaliablity</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id=guideTable>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/scripts/admin.js"></script>
+
+</body>
+</html>

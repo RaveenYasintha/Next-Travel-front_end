@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planning System</title>
+    <link rel="stylesheet" href="css/styles/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles/SignUp.css">
+
+</head>
+<body>
+<nav class="z-3">
+    <div class="logo">
+        <img src="assets/Travel%20places%20Img/logo 2 png.png" alt="Logo">
+    </div>
+    <div class="menuItem">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#travel-locations">Travel Locations</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <l1 class="user-section">
+                <a  data-bs-toggle="modal"
+                   data-bs-target="#exampleModal11" style="cursor: pointer" id="bokked_Details"> My Booking</a>
+            </l1>
+            <l1 class="user-section">
+                <a class="user-name px-2 text-primary font-monospace" data-bs-toggle="modal"
+                   data-bs-target="#exampleModal8" style="cursor: pointer" id="userNameLogged"></a>
+            </l1>
+            <l1 class="user-section">
+                <button id="logoutButton" class=" btn btn-primary">Logout</button>
+            </l1>
+        </ul>
+
+    </div>
+
+</nav>
+<div class="modal fade"  id="exampleModal11" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="reservationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationModalLabel11">Reservation Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h1 class="text-center" id="resetvation">Reservation</h1>
+<!--                //<p class="text-center" id="reservationDescOnModal">A brief description of the package.</p>-->
+
+
+
+                <div class="card">
+                    <div class=" table-responsive" style="height: 61vh; overflow-y: scroll;">
+                        <table class="table shadow table-hover" id="tblDriver">
+                            <thead class="thead-dark">
+                            <tr class="table-primary">
+                                <th scope="col">Id</th>
+                                <th scope="col">hotel_Id</th>
+                                <th scope="col">V_RegNumber</th>
+                                <th scope="col">U_Id</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Reserved Date</th>
+                            </tr>
+                            </thead>
+                            <tbody id="resevaionTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-bs-dismiss="modal" data-bs-target="#reservationModal2" data-bs-toggle="modal"
+                        id="canselOnModal" style="background: #FB6011; border-color: #FB6011; color: white"
+                        type="button">Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header id="home">
+    <section id="homeDesc">
+        <h1 style="font-family: 'Josefin Sans', sans-serif; color: #eaeaea;font-size: 50px; text-shadow: -3px 2px 4px #000000;">Welcome To Next Travel Pvt
+            Ltd</h1>
+        <p style=" font-family:'Poppins', sans-serif; color: #ffffff;font-size: 30px;text-shadow: -3px 2px 4px #fa0202" >Join With Us...!</p>
+        <p style="font-family: 'Josefin Sans', sans-serif; color: #eaeaea;font-size: 30px;text-shadow: -3px 2px 4px #0700ff"> Enjoy Your Free time With Your Family......!!</p>
+    </section>
+    <div class="">
+        <form class="bg-white p-4 shadow align-self-center login-section"
+              style="border-radius: 0.5rem; right: 17%;">
+            <div class="mb-3">
+                <p class="h4">Sign in</p>
+                <hr>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input aria-describedby="emailHelp" class="form-control" id="username" type="email">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" id="password" type="password">
+            </div>
+            <div class="mb-3 d-flex flex-row gap-3">
+                <button class="btn btn-primary col-3" id="loginBtn"
+                        style="background: #FB6011; border-color: #FB6011"
+                        type="button">Login
+                </button>
+                <a class="navbar-brand col-4 align-self-center" href="SignUp.html" id="btnSignUp"
+                   style="font-size: 14px; color:#3f4ffc">Don't have an account?</a>
+            </div>
+
+        </form>
+    </div>
+</header>
+
+<section class="packages container" id="packages">
+    <h2 class="sectionTitle" style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">Travel
+        Packages</h2>
+    <h1 class="h1 mb-3 pt-5" style="font-family: 'Josefin Sans', sans-serif;">Super Luxury</h1>
+    <hr>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="SuperLuxuryContainer"></div>
+    <h1 class="h1 mb-3 pt-5" style="font-family: 'Josefin Sans', sans-serif;">Luxury</h1>
+    <hr>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="LuxuryContainer"></div>
+    <h1 class="h1 mb-3 pt-5" style="font-family: 'Josefin Sans', sans-serif;">Mid-level</h1>
+    <hr>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="MidLevelContainer"></div>
+    <h1 class="h1 mb-3 pt-5" style="font-family: 'Josefin Sans', sans-serif;">Regular</h1>
+    <hr>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="RegularContainer"></div>
+</section>
+<div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel9"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-l  p-1 rounded">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservatioModalLabel">User Detalis</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="userliginForm">
+                <h1 class="text-center" id="Uname">User Details</h1>
+                <p class="text-center" id="loginUserName">A brief description of the package.</p>
+
+                <label class="d-none" id="packageI"></label>
+                <div class="text-center">
+                    <div class="card-body">
+                        <!--                                        <h3>Package Details</h3>-->
+                        <h6>Full Name : <input placeholder="Name" id="loginName"></h6>
+                        <h6>Email : <input placeholder="email" id="loginUserEmail"></h6>
+                        <h6>Address :<input placeholder="Address" id="loginAddrres"></h6>
+                        <h6>Nic : <input placeholder="nic" id="loginNic"></h6>
+                    </div>
+                </div>
+                    <button class="btn btn-danger" id="updateUser" type="button">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="travel-locations container" id="travel-locations">
+    <h2 class="sectionTitle" style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">
+        Popular Tourist Attraction
+        Places</h2>
+    <div class="d-flex w-100 h-100 flex-column gap-3 pt-3">
+        <div class="d-flex flex-row flex-nowrap align-content-center justify-content-center align-items-center gap-5 ">
+            <div class="card" style="width: 30vw;">
+                <img src="assets/Travel%20places%20Img/Kandy.jpg" class="card-img-top"
+                     alt="..." style="height: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Sri Dalada Maligawa</h5>
+                    <p class="card-text">one of a historically significant building of Sri Dalada Maligawa.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 30vw;">
+                <img src="assets/Travel%20places%20Img/colombo.jpg" class="card-img-top" alt="..." style="height: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Capital Colombo</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 30vw;">
+                <img src="assets/Travel%20places%20Img/gall fort.jpg" class="card-img-top" alt="..."
+                     style="height: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Galle Fort</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-nowrap align-content-center justify-content-center align-items-center gap-5 ">
+            <div class="card" style="width: 30vw;">
+                <img src="assets/Travel%20places%20Img/Beauty_of_Sigiriya_.jpg" class="card-img-top" alt="..."
+                     style="height: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Sigiriya</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 30vw;">
+                <img src="assets/Travel%20places%20Img/mirissa.jpg" class="card-img-top"
+                     alt="..." style="height: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Mirissa</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 30vw;">
+                <img src="assets/Travel%20places%20Img/polonnaruwa-01.jpg" class="card-img-top" alt="..." style="height: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Polonnaruwa</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<section class="contact container" id="contact">
+    <h2 class="sectionTitle" style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">
+        Contact Us</h2>
+    <div class=" bg-white mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input class="form-control" id="name" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" id="email" type="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-warning" type="submit">Submit</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <iframe
+                            allowfullscreen=""
+                            class="h-100 w-100" frameborder="0" loading="lazy" marginheight="0"
+                            marginwidth="0" scrolling="no"
+                            src="https://maps.google.com/maps?q=easy car rental&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                            style="border:0;">
+
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Package Detail Modal-->
+<div class="modal fade" id="reservationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="reservationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationModalLabel">Reservation Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h1 class="text-center" id="packageNameOnModal">Travel Package Title</h1>
+                <p class="text-center" id="packageDescOnModal">A brief description of the package.</p>
+                <div class="card">
+                    <label class="d-none" id="packageIdModal"></label>
+                    <div class="card-body">
+                        <h3>Package Details</h3>
+                        <h6>Category : <span id="packageCategoryOnModal"></span></h6>
+                        <h6>Star rate : <span id="packageStarRateOnModal"></span></h6>
+                        <h6>Head count : <span id="packageHeadCountOnModal"></span></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-bs-dismiss="modal" data-bs-target="#reservationModal2" data-bs-toggle="modal"
+                        id="continueOnModal" style="background: #FB6011; border-color: #FB6011; color: white"
+                        type="button">Book Now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Package Detail Modal 2-->
+<div class="modal fade" id="reservationModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="reservationModal2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationModalLabel2">Reservation Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <label class="d-none" id="packageIdModal2"></label>
+            </div>
+            <div class="modal-body">
+                <form class="d-flex flex-column gap-2" id="formOnModal">
+                    <div class="form-group">
+                        <label for="hotelDropDown" class="mb-2">Select Hotel:</label>
+                        <section>
+                            <select class="form-control" id="hotelDropDown"></select>
+                            <a style="color: #0d6efd; font-size: small; cursor: pointer;">View More Details</a>
+                            <span id="hotelDropDownValue"></span>
+                        </section>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicleDropDown" class="mb-2">Select Vehicle:</label>
+                        <section>
+                            <select class="form-control" id="vehicleDropDown"></select>
+                            <a style="color: #0d6efd; font-size: small; cursor: pointer;">View More Details</a>
+                            <span id="vehicleDropDownValue"></span>
+                        </section>
+                    </div>
+                    <div class="form-group">
+                        <label for="start_date" class="mb-2">Tour Start Date:</label>
+                        <input type="date" class="form-control" id="start_date" onchange="calculateDate()">
+                    </div>
+                    <div class="form-group">
+                        <label for="start_date" class="mb-2">Tour End Date:</label>
+                        <input type="date" class="form-control" id="end_date" onchange="calculateDate()">
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-2">Need a Guide? </label>
+                        <section>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radioBtn"
+                                       id="yesRadioBtn" checked>
+                                <label class="form-check-label" for="yesRadioBtn">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radioBtn"
+                                       id="noRadioBtn">
+                                <label class="form-check-label" for="noRadioBtn">
+                                    No
+                                </label>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="form-group">
+                        <label for="additional_info" class="mb-2">Additional Information:</label>
+                        <textarea class="form-control" id="additional_info" rows="4"
+                                  placeholder="(Optional)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="additional_info" class="mb-2 fw-bold">Net Amount : <label class="fw-normal">LKR
+                            <span id="netAmount"></span></label></label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-bs-dismiss="modal" data-bs-target="#reservationModal" data-bs-toggle="modal"
+                        id="backBtn" style="background: #a6a6a6; border-color: #a6a6a6; color: white"
+                        type="button">Go Back
+                </button>
+                <button class="btn" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        id="proceedBtn" style="background: #FB6011; border-color: #FB6011; color: white"
+                        type="button">Proceed
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="w-100"></footer>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts/index.js"></script>
+</body>
+</html>
